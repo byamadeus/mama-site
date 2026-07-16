@@ -10,13 +10,13 @@ const LINKS = [
   { href: "/about", label: "About" },
 ];
 
-export default function PillNav() {
+export default function SegmentedNav() {
   const pathname = usePathname();
 
   return (
     <nav
       aria-label="Primary"
-      className="flex items-center gap-1 rounded-full border border-line bg-surface/90 p-1 shadow-sm backdrop-blur"
+      className="flex items-center gap-0.5 rounded-lg border border-line bg-surface p-1"
     >
       {LINKS.map(({ href, label }) => {
         const active = pathname === href;
@@ -24,10 +24,10 @@ export default function PillNav() {
           <Link
             key={href}
             href={href}
-            className={`rounded-full px-4 py-2 text-sm font-medium transition-colors sm:px-5 ${
+            className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors sm:px-4 ${
               active
-                ? "bg-accent text-accent-foreground"
-                : "text-foreground hover:bg-line/60"
+                ? "bg-background text-foreground shadow-sm"
+                : "text-muted hover:text-foreground"
             }`}
           >
             {label}

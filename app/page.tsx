@@ -2,6 +2,7 @@ import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import PhotoPlaceholder from "@/components/PhotoPlaceholder";
 import WhyCard from "@/components/WhyCard";
+import { ArrowUpRight } from "lucide-react";
 
 const EXPLORE = [
   {
@@ -50,8 +51,10 @@ export default function Home() {
 
       <section className="border-y border-line bg-surface px-4 py-10 sm:px-8">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-2 text-center">
-          <span className="text-sm text-muted">Currently</span>
-          <p className="font-display text-2xl text-foreground">
+          <span className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
+            Currently
+          </span>
+          <p className="font-display text-2xl font-medium text-foreground">
             A new project is taking shape
           </p>
           <p className="max-w-md text-sm text-muted">
@@ -75,8 +78,12 @@ export default function Home() {
                 className="transition-transform duration-300 group-hover:scale-[1.02]"
               />
               <div>
-                <p className="font-display text-lg text-foreground">
+                <p className="inline-flex items-center gap-1 font-display text-lg font-medium text-foreground">
                   {label}
+                  <ArrowUpRight
+                    className="h-4 w-4 text-muted transition-colors group-hover:text-foreground"
+                    strokeWidth={1.5}
+                  />
                 </p>
                 <p className="text-sm text-muted">{copy}</p>
               </div>

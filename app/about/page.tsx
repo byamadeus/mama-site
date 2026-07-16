@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import PhotoPlaceholder from "@/components/PhotoPlaceholder";
 import WhyCard from "@/components/WhyCard";
+import { ArrowUpRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About",
@@ -35,17 +36,18 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-3xl items-center gap-8 sm:grid-cols-2">
           <PhotoPlaceholder label="Book cover" tone={1} aspect="aspect-[3/4]" />
           <div className="text-center sm:text-left">
-            <h2 className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted">
+            <h2 className="mb-3 font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
               Books
             </h2>
-            <p className="font-display text-2xl text-foreground">
+            <p className="font-display text-2xl font-medium text-foreground">
               Her story, in print
             </p>
             <a
               href="#"
-              className="mt-5 inline-block rounded-full border border-line px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-line/60"
+              className="mt-5 inline-flex items-center gap-1.5 rounded-md border border-line px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface"
             >
               Read more
+              <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
             </a>
           </div>
         </div>

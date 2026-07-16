@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import EmbedPlaceholder from "@/components/EmbedPlaceholder";
 import WhyCard from "@/components/WhyCard";
+import { ArrowUpRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Speaking",
@@ -35,7 +36,7 @@ export default function SpeakingPage() {
 
       <section className="px-4 pb-16 sm:px-8">
         <div className="mx-auto max-w-3xl">
-          <h2 className="mb-4 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted">
+          <h2 className="mb-4 text-center font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
             Watch
           </h2>
           <EmbedPlaceholder label="Speaking reel — add YouTube link" />
@@ -44,14 +45,14 @@ export default function SpeakingPage() {
 
       <section className="px-4 pb-16 sm:px-8">
         <div className="mx-auto max-w-xl">
-          <h2 className="mb-6 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted">
+          <h2 className="mb-6 text-center font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
             Themes
           </h2>
           <ul className="flex flex-col gap-4">
             {THEMES.map((theme) => (
               <li
                 key={theme}
-                className="rounded-2xl border border-line bg-surface px-6 py-4 text-center font-display text-lg text-foreground"
+                className="rounded-lg border border-line bg-surface px-6 py-4 text-center font-display text-lg font-medium text-foreground"
               >
                 {theme}
               </li>
@@ -61,14 +62,15 @@ export default function SpeakingPage() {
       </section>
 
       <section className="border-t border-line bg-surface px-4 py-14 text-center sm:px-8">
-        <p className="font-display text-2xl text-foreground">
+        <p className="font-display text-2xl font-medium text-foreground">
           For booking inquiries
         </p>
         <a
           href="mailto:booking@tajci.com"
-          className="mt-5 inline-block rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
+          className="mt-5 inline-flex items-center gap-1.5 rounded-md bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
         >
           Get in touch
+          <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
         </a>
       </section>
     </>

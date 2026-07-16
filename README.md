@@ -1,15 +1,20 @@
 # Tajci — landing site
 
-Next.js (App Router) + Tailwind CSS. Photo-driven, mobile-first, minimal
-type — built to work as a link-in-bio destination as well as a standalone
-site.
+Next.js (App Router) + Tailwind CSS, styled after Vercel's Geist design
+system (Geist Sans/Mono, flat neutral surfaces, no gradients, small-radius
+cards, `lucide-react` icons). Mobile-first, interaction-driven — built to
+work as a link-in-bio destination as well as a standalone site.
+
+Read `CONTEXT.md` first — it has background research on Tajci (real name,
+career, existing web presence, sensitive items to confirm with the family
+before publishing) gathered from public sources.
 
 ## Structure
 
 Each of Tajci's areas is a real route, not just a page section, so each
 can be linked to independently (e.g. for a speaking bureau or a booker):
 
-- `/` — hub/hero with a pill nav into the four areas
+- `/` — hub with a segmented nav into the four areas
 - `/music`
 - `/speaking`
 - `/coaching`
@@ -17,12 +22,14 @@ can be linked to independently (e.g. for a speaking bureau or a booker):
 
 Shared UI lives in `components/`:
 
-- `PillNav` — the Music / Speaking / Coaching / About nav, highlights the
-  active route
+- `SegmentedNav` — the Music / Speaking / Coaching / About toggle,
+  highlights the active route (Geist-style segmented control, not a pill)
 - `SiteHeader` / `SiteFooter` — persistent chrome
-- `PageHero` — full-bleed photo hero used by each sub-page
-- `PhotoPlaceholder` — warm gradient placeholder standing in for real
-  photography (see "Replacing placeholders" below)
+- `PageHero` — text + photo-card hero used by each sub-page
+- `WhyCard` — click-to-expand card that opens a drawer (bottom sheet on
+  mobile, centered modal on desktop) with the fuller "why" for that page
+- `PhotoPlaceholder` — flat neutral placeholder standing in for real
+  photography, no gradients (see "Replacing placeholders" below)
 - `EmbedPlaceholder` — stand-in for Spotify/Apple Music/YouTube embeds
 
 ## Getting started

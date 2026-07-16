@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 const SOCIAL_LINKS = [
   { label: "Instagram", href: "#" },
@@ -11,16 +12,19 @@ export default function SiteFooter() {
   return (
     <footer className="border-t border-line px-4 py-10 sm:px-8">
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 text-center">
-        <p className="font-display text-xl text-foreground">Tajci</p>
+        <p className="text-lg font-semibold tracking-tight text-foreground">
+          Tajci
+        </p>
         <p className="max-w-md text-sm text-muted">
           New music, tour dates, and stories land first in the monthly
           newsletter and on Patreon.
         </p>
         <a
           href="#"
-          className="rounded-full border border-line px-5 py-2 text-sm font-medium text-foreground transition-colors hover:bg-line/60"
+          className="inline-flex items-center gap-1.5 rounded-md border border-line px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-surface"
         >
           Join the newsletter
+          <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
         </a>
         <nav
           aria-label="Social"
@@ -30,9 +34,10 @@ export default function SiteFooter() {
             <Link
               key={label}
               href={href}
-              className="transition-colors hover:text-foreground"
+              className="inline-flex items-center gap-1 transition-colors hover:text-foreground"
             >
               {label}
+              <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.5} />
             </Link>
           ))}
         </nav>

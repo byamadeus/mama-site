@@ -1,33 +1,26 @@
-const GRADIENTS = [
-  "from-neutral-200 via-neutral-400 to-neutral-600",
-  "from-neutral-300 via-neutral-500 to-neutral-700",
-  "from-neutral-200 via-neutral-500 to-neutral-800",
-] as const;
+import { ImageIcon } from "lucide-react";
+
+const FILLS = ["bg-neutral-100", "bg-neutral-200", "bg-neutral-300"] as const;
 
 export default function PhotoPlaceholder({
   label,
   aspect = "aspect-[4/5]",
   tone = 0,
-  labelPosition = "bottom",
   className = "",
 }: {
   label: string;
   aspect?: string;
   tone?: 0 | 1 | 2;
-  labelPosition?: "top" | "bottom" | "none";
   className?: string;
 }) {
   return (
     <div
-      className={`relative flex overflow-hidden rounded-2xl bg-gradient-to-br ${GRADIENTS[tone]} ${
-        labelPosition === "top" ? "items-start" : "items-end"
-      } ${aspect} ${className}`}
+      className={`flex flex-col items-center justify-center gap-2 overflow-hidden rounded-lg border border-line ${FILLS[tone]} ${aspect} ${className}`}
     >
-      {labelPosition !== "none" && (
-        <span className="m-4 rounded-full bg-black/25 px-3 py-1 text-xs font-medium tracking-wide text-white/90 backdrop-blur-sm">
-          Photo — {label}
-        </span>
-      )}
+      <ImageIcon className="h-5 w-5 text-muted" strokeWidth={1.5} />
+      <span className="px-4 text-center text-xs text-muted">
+        Photo — {label}
+      </span>
     </div>
   );
 }

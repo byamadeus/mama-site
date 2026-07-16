@@ -3,6 +3,7 @@ import PageHero from "@/components/PageHero";
 import PhotoPlaceholder from "@/components/PhotoPlaceholder";
 import EmbedPlaceholder from "@/components/EmbedPlaceholder";
 import WhyCard from "@/components/WhyCard";
+import { ArrowUpRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Music",
@@ -32,7 +33,7 @@ export default function MusicPage() {
 
       <section className="px-4 pb-16 sm:px-8">
         <div className="mx-auto max-w-3xl">
-          <h2 className="mb-4 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted">
+          <h2 className="mb-4 text-center font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
             Listen
           </h2>
           <EmbedPlaceholder label="Spotify embed — add link" />
@@ -41,7 +42,7 @@ export default function MusicPage() {
 
       <section className="px-4 pb-16 sm:px-8">
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-4 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted">
+          <h2 className="mb-4 text-center font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
             Watch
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -53,7 +54,7 @@ export default function MusicPage() {
 
       <section className="px-4 pb-16 sm:px-8">
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-4 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted">
+          <h2 className="mb-4 text-center font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
             Discography
           </h2>
           <div className="grid grid-cols-3 gap-4">
@@ -70,14 +71,15 @@ export default function MusicPage() {
       </section>
 
       <section className="border-t border-line bg-surface px-4 py-14 text-center sm:px-8">
-        <p className="font-display text-2xl text-foreground">
+        <p className="font-display text-2xl font-medium text-foreground">
           For booking inquiries
         </p>
         <a
           href="mailto:booking@tajci.com"
-          className="mt-5 inline-block rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
+          className="mt-5 inline-flex items-center gap-1.5 rounded-md bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
         >
           Get in touch
+          <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
         </a>
       </section>
     </>

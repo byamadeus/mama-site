@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Plus, X } from "lucide-react";
 
 export default function WhyCard({
   title,
@@ -40,16 +41,16 @@ export default function WhyCard({
       <button
         type="button"
         onClick={show}
-        className="group flex w-full items-center justify-between gap-4 rounded-xl border border-line bg-surface px-6 py-5 text-left transition-colors hover:border-foreground/40"
+        className="group flex w-full items-center justify-between gap-4 rounded-lg border border-line bg-surface px-6 py-5 text-left transition-colors hover:border-foreground/40"
       >
         <span>
-          <span className="block font-display text-lg text-foreground">
+          <span className="block font-display text-lg font-medium text-foreground">
             {title}
           </span>
           <span className="mt-1 block text-sm text-muted">{hook}</span>
         </span>
         <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line text-foreground transition-transform duration-300 group-hover:rotate-45">
-          +
+          <Plus className="h-4 w-4" strokeWidth={1.5} />
         </span>
       </button>
 
@@ -62,7 +63,7 @@ export default function WhyCard({
             onClick={hide}
           />
           <div
-            className={`relative w-full max-w-lg rounded-t-2xl border border-line bg-background p-8 shadow-xl transition-all duration-300 sm:rounded-2xl ${
+            className={`relative w-full max-w-lg rounded-t-xl border border-line bg-background p-8 shadow-xl transition-all duration-300 sm:rounded-xl ${
               open
                 ? "translate-y-0 opacity-100"
                 : "translate-y-6 opacity-0 sm:translate-y-3"
@@ -74,9 +75,9 @@ export default function WhyCard({
               aria-label="Close"
               className="absolute right-5 top-5 flex h-8 w-8 items-center justify-center rounded-full border border-line text-foreground transition-colors hover:bg-surface"
             >
-              ×
+              <X className="h-4 w-4" strokeWidth={1.5} />
             </button>
-            <p className="pr-8 font-display text-2xl text-foreground">
+            <p className="pr-8 font-display text-2xl font-medium text-foreground">
               {title}
             </p>
             <p className="mt-4 text-base leading-relaxed text-muted">
