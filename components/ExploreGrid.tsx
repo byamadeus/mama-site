@@ -5,24 +5,26 @@ import { SECTIONS } from "@/lib/sections";
 
 export default function ExploreGrid() {
   return (
-    <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+    <div className="flex flex-col gap-16 sm:gap-24">
       {SECTIONS.map(({ href, label, tone, copy }) => (
-        <Link key={href} href={href} className="group flex flex-col gap-3">
+        <Link key={href} href={href} className="group flex flex-col gap-4">
           <PhotoPlaceholder
             label={label}
             tone={tone}
-            aspect="aspect-square"
-            className="transition-transform duration-300 group-hover:scale-[1.02]"
+            aspect="min-h-[70vh] sm:min-h-[85vh]"
+            className="w-full transition-transform duration-300 group-hover:scale-[1.01]"
           />
-          <div>
-            <p className="inline-flex items-center gap-1 font-display text-lg font-medium text-foreground">
-              {label}
-              <ArrowUpRight
-                className="h-4 w-4 text-muted transition-colors group-hover:text-foreground"
-                strokeWidth={1.5}
-              />
-            </p>
-            <p className="text-sm text-muted">{copy}</p>
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <p className="font-display text-2xl font-medium text-foreground sm:text-3xl">
+                {label}
+              </p>
+              <p className="mt-1 text-muted">{copy}</p>
+            </div>
+            <ArrowUpRight
+              className="h-5 w-5 shrink-0 text-muted transition-colors group-hover:text-foreground"
+              strokeWidth={1.5}
+            />
           </div>
         </Link>
       ))}

@@ -6,8 +6,8 @@ const BORDERS = {
 } as const;
 
 const PADDINGS = {
-  sm: "py-10",
-  lg: "py-14",
+  sm: "py-12 sm:py-16",
+  lg: "py-16 sm:py-20",
 } as const;
 
 export default function Band({

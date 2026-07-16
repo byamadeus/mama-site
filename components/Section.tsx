@@ -9,8 +9,8 @@ const WIDTHS = {
 } as const;
 
 const PADDINGS = {
-  bottom: "pb-16",
-  both: "py-16",
+  bottom: "pb-20 sm:pb-28",
+  both: "py-20 sm:py-28",
 } as const;
 
 export default function Section({

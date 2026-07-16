@@ -12,7 +12,7 @@ export default function PageHero({
   tone?: 0 | 1 | 2;
 }) {
   return (
-    <section className="mx-auto max-w-5xl px-4 pb-10 pt-14 sm:px-8 sm:pb-16 sm:pt-24">
+    <section className="mx-auto max-w-5xl px-4 pb-14 pt-20 sm:px-8 sm:pb-24 sm:pt-32">
       <div className="grid gap-8 sm:grid-cols-2 sm:items-center sm:gap-16">
         <div>
           <h1 className="font-display text-4xl font-medium tracking-tight text-foreground sm:text-6xl">

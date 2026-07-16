@@ -14,17 +14,23 @@ before publishing) gathered from public sources.
 Each of Tajci's areas is a real route, not just a page section, so each
 can be linked to independently (e.g. for a speaking bureau or a booker):
 
-- `/` — hub with a segmented nav into the four areas
+- `/` — hub: no top nav, just the hero and four full-width stacked cards
+  (one per area) that feel like the images, not a menu bar
 - `/music`
 - `/speaking`
 - `/coaching`
 - `/about`
 
+There's no persistent tab bar. The home page has no header at all — the
+stacked cards *are* the navigation. Every sub-page instead gets a small
+breadcrumb ("← Tajci / Music") that links back home; `SiteHeader` decides
+which to render based on the current route.
+
 Pages are thin — they just compose section components, so a layout or
 copy change happens in one file instead of five. `lib/sections.ts` is the
 single source of truth for the four areas (href/label/tone/copy); both
-`SegmentedNav` and `ExploreGrid` read from it instead of keeping their own
-copies.
+`SiteHeader` (for the breadcrumb's current-page label) and `ExploreGrid`
+read from it instead of keeping their own copies.
 
 `components/ui/` holds true atoms (no page/business logic):
 
@@ -39,10 +45,10 @@ atoms:
 - `Band` — full-width bordered/surface strip (the "Currently" block and
   every CTA band)
 - `CardList` — the bordered list used for Themes/What's included
-- `ExploreGrid` — the four-tile grid on the home page
-- `SegmentedNav` — the Music / Speaking / Coaching / About toggle,
-  highlights the active route (Geist-style segmented control, not a pill)
-- `SiteHeader` / `SiteFooter` — persistent chrome
+- `ExploreGrid` — the full-width stacked cards on the home page, one
+  large near-full-height photo per area
+- `SiteHeader` — hidden on `/`, a small back breadcrumb everywhere else
+- `SiteFooter` — persistent chrome on every page
 - `PageHero` — text + photo-card hero used by each sub-page
 - `WhyCard` — click-to-expand card that opens a drawer (bottom sheet on
   mobile, centered modal on desktop) with the fuller "why" for that page
