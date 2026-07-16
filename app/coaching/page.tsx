@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import WhyCard from "@/components/WhyCard";
-import { ArrowUpRight } from "lucide-react";
+import Section from "@/components/Section";
+import Band from "@/components/Band";
+import CardList from "@/components/CardList";
+import Eyebrow from "@/components/ui/Eyebrow";
+import Button from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Coaching",
@@ -13,7 +17,7 @@ const INCLUDES = [
   "Monthly one-on-one sessions",
   "Direct access between sessions",
   "A space built for creative and personal growth",
-];
+] as const;
 
 export default function CoachingPage() {
   return (
@@ -25,47 +29,28 @@ export default function CoachingPage() {
         tone={2}
       />
 
-      <section className="mx-auto max-w-2xl px-4 pb-16 sm:px-8">
+      <Section width="2xl">
         <WhyCard
           title="Why only five"
           hook="Real attention doesn't scale — so it isn't asked to."
           body="Tajci loves creating opportunities for other creatives and mentoring people through change. Coaching is kept small on purpose — real attention, for a handful of people at a time."
         />
-      </section>
+      </Section>
 
-      <section className="px-4 pb-16 sm:px-8">
-        <div className="mx-auto max-w-xl">
-          <h2 className="mb-6 text-center font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
-            What&apos;s included
-          </h2>
-          <ul className="flex flex-col gap-4">
-            {INCLUDES.map((item) => (
-              <li
-                key={item}
-                className="rounded-lg border border-line bg-surface px-6 py-4 text-center font-display text-lg font-medium text-foreground"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <Section width="xl">
+        <Eyebrow as="h2" className="mb-6 text-center">
+          What&apos;s included
+        </Eyebrow>
+        <CardList items={INCLUDES} />
+      </Section>
 
-      <section className="border-t border-line bg-surface px-4 py-14 text-center sm:px-8">
-        <span className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
-          5 spots a month
-        </span>
-        <p className="mt-2 font-display text-2xl font-medium text-foreground">
+      <Band>
+        <Eyebrow>5 spots a month</Eyebrow>
+        <p className="font-display text-2xl font-medium text-foreground">
           Apply to work together
         </p>
-        <a
-          href="mailto:coaching@tajci.com"
-          className="mt-5 inline-flex items-center gap-1.5 rounded-md bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
-        >
-          Apply now
-          <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
-        </a>
-      </section>
+        <Button href="mailto:coaching@tajci.com">Apply now</Button>
+      </Band>
     </>
   );
 }

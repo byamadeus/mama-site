@@ -20,8 +20,26 @@ can be linked to independently (e.g. for a speaking bureau or a booker):
 - `/coaching`
 - `/about`
 
-Shared UI lives in `components/`:
+Pages are thin — they just compose section components, so a layout or
+copy change happens in one file instead of five. `lib/sections.ts` is the
+single source of truth for the four areas (href/label/tone/copy); both
+`SegmentedNav` and `ExploreGrid` read from it instead of keeping their own
+copies.
 
+`components/ui/` holds true atoms (no page/business logic):
+
+- `Eyebrow` — the small uppercase mono label ("LISTEN", "CURRENTLY", etc.)
+- `Button` — the arrow-suffixed link button (`solid`/`outline` variants,
+  `sm`/`md` sizes)
+
+`components/` holds layout primitives and page sections built from those
+atoms:
+
+- `Section` — centers content at a given max-width with standard padding
+- `Band` — full-width bordered/surface strip (the "Currently" block and
+  every CTA band)
+- `CardList` — the bordered list used for Themes/What's included
+- `ExploreGrid` — the four-tile grid on the home page
 - `SegmentedNav` — the Music / Speaking / Coaching / About toggle,
   highlights the active route (Geist-style segmented control, not a pill)
 - `SiteHeader` / `SiteFooter` — persistent chrome
@@ -31,6 +49,10 @@ Shared UI lives in `components/`:
 - `PhotoPlaceholder` — flat neutral placeholder standing in for real
   photography, no gradients (see "Replacing placeholders" below)
 - `EmbedPlaceholder` — stand-in for Spotify/Apple Music/YouTube embeds
+
+Adding a fifth area (say `/press`) means one entry in `lib/sections.ts`
+plus a new `app/press/page.tsx` built from `PageHero`/`Section`/`Band` —
+the nav and home grid pick it up automatically.
 
 ## Getting started
 

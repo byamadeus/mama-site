@@ -3,7 +3,10 @@ import PageHero from "@/components/PageHero";
 import PhotoPlaceholder from "@/components/PhotoPlaceholder";
 import EmbedPlaceholder from "@/components/EmbedPlaceholder";
 import WhyCard from "@/components/WhyCard";
-import { ArrowUpRight } from "lucide-react";
+import Section from "@/components/Section";
+import Band from "@/components/Band";
+import Eyebrow from "@/components/ui/Eyebrow";
+import Button from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Music",
@@ -11,7 +14,7 @@ export const metadata: Metadata = {
     "Listen to Tajci's pop and jazz songs and watch performance videos.",
 };
 
-const ALBUMS = ["Latest release", "Live sessions", "Early catalog"];
+const ALBUMS = ["Latest release", "Live sessions", "Early catalog"] as const;
 
 export default function MusicPage() {
   return (
@@ -23,65 +26,53 @@ export default function MusicPage() {
         tone={0}
       />
 
-      <section className="mx-auto max-w-2xl px-4 pb-16 sm:px-8">
+      <Section width="2xl">
         <WhyCard
           title="Why live music"
           hook="It's built to be felt in the room, not just streamed."
           body="Pop and jazz songs built to be felt live — for audiences, and for anyone booking her to get a sense of who she is on a stage."
         />
-      </section>
+      </Section>
 
-      <section className="px-4 pb-16 sm:px-8">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="mb-4 text-center font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
-            Listen
-          </h2>
-          <EmbedPlaceholder label="Spotify embed — add link" />
+      <Section width="3xl">
+        <Eyebrow as="h2" className="mb-4 text-center">
+          Listen
+        </Eyebrow>
+        <EmbedPlaceholder label="Spotify embed — add link" />
+      </Section>
+
+      <Section width="4xl">
+        <Eyebrow as="h2" className="mb-4 text-center">
+          Watch
+        </Eyebrow>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <EmbedPlaceholder label="Performance video — add YouTube link" />
+          <EmbedPlaceholder label="Performance video — add YouTube link" />
         </div>
-      </section>
+      </Section>
 
-      <section className="px-4 pb-16 sm:px-8">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="mb-4 text-center font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
-            Watch
-          </h2>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <EmbedPlaceholder label="Performance video — add YouTube link" />
-            <EmbedPlaceholder label="Performance video — add YouTube link" />
-          </div>
+      <Section width="4xl">
+        <Eyebrow as="h2" className="mb-4 text-center">
+          Discography
+        </Eyebrow>
+        <div className="grid grid-cols-3 gap-4">
+          {ALBUMS.map((label, i) => (
+            <PhotoPlaceholder
+              key={label}
+              label={label}
+              tone={(i % 3) as 0 | 1 | 2}
+              aspect="aspect-square"
+            />
+          ))}
         </div>
-      </section>
+      </Section>
 
-      <section className="px-4 pb-16 sm:px-8">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="mb-4 text-center font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
-            Discography
-          </h2>
-          <div className="grid grid-cols-3 gap-4">
-            {ALBUMS.map((label, i) => (
-              <PhotoPlaceholder
-                key={label}
-                label={label}
-                tone={(i % 3) as 0 | 1 | 2}
-                aspect="aspect-square"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-line bg-surface px-4 py-14 text-center sm:px-8">
+      <Band>
         <p className="font-display text-2xl font-medium text-foreground">
           For booking inquiries
         </p>
-        <a
-          href="mailto:booking@tajci.com"
-          className="mt-5 inline-flex items-center gap-1.5 rounded-md bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
-        >
-          Get in touch
-          <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
-        </a>
-      </section>
+        <Button href="mailto:booking@tajci.com">Get in touch</Button>
+      </Band>
     </>
   );
 }

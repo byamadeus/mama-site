@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import Button from "./ui/Button";
 
 const SOCIAL_LINKS = [
   { label: "Instagram", href: "#" },
@@ -19,13 +20,9 @@ export default function SiteFooter() {
           New music, tour dates, and stories land first in the monthly
           newsletter and on Patreon.
         </p>
-        <a
-          href="#"
-          className="inline-flex items-center gap-1.5 rounded-md border border-line px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-surface"
-        >
+        <Button href="#" variant="outline" size="sm">
           Join the newsletter
-          <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
-        </a>
+        </Button>
         <nav
           aria-label="Social"
           className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted"

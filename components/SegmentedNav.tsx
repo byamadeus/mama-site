@@ -2,13 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const LINKS = [
-  { href: "/music", label: "Music" },
-  { href: "/speaking", label: "Speaking" },
-  { href: "/coaching", label: "Coaching" },
-  { href: "/about", label: "About" },
-];
+import { SECTIONS } from "@/lib/sections";
 
 export default function SegmentedNav() {
   const pathname = usePathname();
@@ -18,7 +12,7 @@ export default function SegmentedNav() {
       aria-label="Primary"
       className="flex items-center gap-0.5 rounded-lg border border-line bg-surface p-1"
     >
-      {LINKS.map(({ href, label }) => {
+      {SECTIONS.map(({ href, label }) => {
         const active = pathname === href;
         return (
           <Link
