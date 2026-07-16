@@ -1,7 +1,7 @@
 const GRADIENTS = [
-  "from-[#d8c3a5] via-[#c98f65] to-[#8a4a3a]",
-  "from-[#e3d5c0] via-[#b76a53] to-[#5c2b2f]",
-  "from-[#e8dcc8] via-[#a8683f] to-[#3f2620]",
+  "from-neutral-200 via-neutral-400 to-neutral-600",
+  "from-neutral-300 via-neutral-500 to-neutral-700",
+  "from-neutral-200 via-neutral-500 to-neutral-800",
 ] as const;
 
 export default function PhotoPlaceholder({

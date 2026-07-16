@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import PhotoPlaceholder from "@/components/PhotoPlaceholder";
 import EmbedPlaceholder from "@/components/EmbedPlaceholder";
+import WhyCard from "@/components/WhyCard";
 
 export const metadata: Metadata = {
   title: "Music",
@@ -21,16 +22,17 @@ export default function MusicPage() {
         tone={0}
       />
 
-      <section className="mx-auto max-w-2xl px-4 py-16 text-center sm:px-8">
-        <p className="text-balance text-lg leading-relaxed text-foreground sm:text-xl">
-          Pop and jazz songs built to be felt live — for audiences, and for
-          anyone booking her to get a sense of who she is on a stage.
-        </p>
+      <section className="mx-auto max-w-2xl px-4 pb-16 sm:px-8">
+        <WhyCard
+          title="Why live music"
+          hook="It's built to be felt in the room, not just streamed."
+          body="Pop and jazz songs built to be felt live — for audiences, and for anyone booking her to get a sense of who she is on a stage."
+        />
       </section>
 
       <section className="px-4 pb-16 sm:px-8">
         <div className="mx-auto max-w-3xl">
-          <h2 className="mb-4 text-center text-xs font-medium uppercase tracking-[0.2em] text-accent">
+          <h2 className="mb-4 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted">
             Listen
           </h2>
           <EmbedPlaceholder label="Spotify embed — add link" />
@@ -39,7 +41,7 @@ export default function MusicPage() {
 
       <section className="px-4 pb-16 sm:px-8">
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-4 text-center text-xs font-medium uppercase tracking-[0.2em] text-accent">
+          <h2 className="mb-4 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted">
             Watch
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -51,7 +53,7 @@ export default function MusicPage() {
 
       <section className="px-4 pb-16 sm:px-8">
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-4 text-center text-xs font-medium uppercase tracking-[0.2em] text-accent">
+          <h2 className="mb-4 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted">
             Discography
           </h2>
           <div className="grid grid-cols-3 gap-4">

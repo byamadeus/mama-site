@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import EmbedPlaceholder from "@/components/EmbedPlaceholder";
+import WhyCard from "@/components/WhyCard";
 
 export const metadata: Metadata = {
   title: "Speaking",
@@ -24,17 +25,17 @@ export default function SpeakingPage() {
         tone={1}
       />
 
-      <section className="mx-auto max-w-2xl px-4 py-16 text-center sm:px-8">
-        <p className="text-balance text-lg leading-relaxed text-foreground sm:text-xl">
-          Tajci creates experiences for audiences to feel something — a
-          window into something magical, intense, into a world in color,
-          emotion, and movement, touching the purpose and meaning of life.
-        </p>
+      <section className="mx-auto max-w-2xl px-4 pb-16 sm:px-8">
+        <WhyCard
+          title="Why she speaks"
+          hook="A window into something magical, not just a talk."
+          body="Tajci creates experiences for audiences to feel something — a window into something magical, intense, into a world in color, emotion, and movement, touching the purpose and meaning of life."
+        />
       </section>
 
       <section className="px-4 pb-16 sm:px-8">
         <div className="mx-auto max-w-3xl">
-          <h2 className="mb-4 text-center text-xs font-medium uppercase tracking-[0.2em] text-accent">
+          <h2 className="mb-4 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted">
             Watch
           </h2>
           <EmbedPlaceholder label="Speaking reel — add YouTube link" />
@@ -43,7 +44,7 @@ export default function SpeakingPage() {
 
       <section className="px-4 pb-16 sm:px-8">
         <div className="mx-auto max-w-xl">
-          <h2 className="mb-6 text-center text-xs font-medium uppercase tracking-[0.2em] text-accent">
+          <h2 className="mb-6 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted">
             Themes
           </h2>
           <ul className="flex flex-col gap-4">

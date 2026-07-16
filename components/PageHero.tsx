@@ -1,35 +1,40 @@
+import { ReactNode } from "react";
 import PhotoPlaceholder from "./PhotoPlaceholder";
 
 export default function PageHero({
+  eyebrow,
   title,
   tagline,
   photoLabel,
   tone = 0,
+  children,
 }: {
+  eyebrow?: string;
   title: string;
   tagline: string;
   photoLabel: string;
   tone?: 0 | 1 | 2;
+  children?: ReactNode;
 }) {
   return (
-    <section className="relative">
-      <div className="relative aspect-[4/5] w-full overflow-hidden sm:aspect-[21/9]">
+    <section className="mx-auto max-w-5xl px-4 pb-10 pt-14 sm:px-8 sm:pb-16 sm:pt-24">
+      <div className="grid gap-8 sm:grid-cols-2 sm:items-center sm:gap-16">
+        <div>
+          {eyebrow && (
+            <p className="mb-3 text-sm text-muted">{eyebrow}</p>
+          )}
+          <h1 className="font-display text-4xl font-medium tracking-tight text-foreground sm:text-6xl">
+            {title}
+          </h1>
+          <p className="mt-4 max-w-sm text-lg text-muted">{tagline}</p>
+          {children}
+        </div>
         <PhotoPlaceholder
           label={photoLabel}
           tone={tone}
-          aspect="h-full"
-          labelPosition="top"
-          className="rounded-none"
+          aspect="aspect-[4/5]"
+          className="w-full"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/5 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-3 px-4 pb-10 text-center sm:pb-14">
-          <h1 className="font-display text-4xl italic text-white sm:text-5xl">
-            {title}
-          </h1>
-          <p className="max-w-sm text-balance text-white/90 sm:text-lg">
-            {tagline}
-          </p>
-        </div>
       </div>
     </section>
   );

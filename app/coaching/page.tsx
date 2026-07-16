@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import WhyCard from "@/components/WhyCard";
 
 export const metadata: Metadata = {
   title: "Coaching",
@@ -23,17 +24,17 @@ export default function CoachingPage() {
         tone={2}
       />
 
-      <section className="mx-auto max-w-2xl px-4 py-16 text-center sm:px-8">
-        <p className="text-balance text-lg leading-relaxed text-foreground sm:text-xl">
-          Tajci loves creating opportunities for other creatives and
-          mentoring people through change. Coaching is kept small on
-          purpose — real attention, for a handful of people at a time.
-        </p>
+      <section className="mx-auto max-w-2xl px-4 pb-16 sm:px-8">
+        <WhyCard
+          title="Why only five"
+          hook="Real attention doesn't scale — so it isn't asked to."
+          body="Tajci loves creating opportunities for other creatives and mentoring people through change. Coaching is kept small on purpose — real attention, for a handful of people at a time."
+        />
       </section>
 
       <section className="px-4 pb-16 sm:px-8">
         <div className="mx-auto max-w-xl">
-          <h2 className="mb-6 text-center text-xs font-medium uppercase tracking-[0.2em] text-accent">
+          <h2 className="mb-6 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted">
             What&apos;s included
           </h2>
           <ul className="flex flex-col gap-4">
@@ -50,7 +51,7 @@ export default function CoachingPage() {
       </section>
 
       <section className="border-t border-line bg-surface px-4 py-14 text-center sm:px-8">
-        <span className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
+        <span className="text-xs font-medium uppercase tracking-[0.2em] text-muted">
           5 spots a month
         </span>
         <p className="mt-2 font-display text-2xl text-foreground">
