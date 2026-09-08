@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import Button from "./ui/Button";
 
@@ -10,6 +13,10 @@ const SOCIAL_LINKS = [
 ];
 
 export default function SiteFooter() {
+  const pathname = usePathname();
+
+  if (pathname === "/") return null;
+
   return (
     <footer className="border-t border-line px-4 py-10 sm:px-8">
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 text-center">
