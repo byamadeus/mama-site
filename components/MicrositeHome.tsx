@@ -17,7 +17,7 @@ const BACKGROUNDS = [
 const NAV_LINKS = [
   { label: "Shows", href: "https://www.instagram.com/tajcicameron/?hl=en" },
   { label: "Music", href: "https://open.spotify.com/artist/0ugmPqO8dNY1CLfjYwUwZK" },
-  { label: "Speaking", href: "#" },
+  { label: "Speaking", href: "https://www.linkedin.com/in/tatiana-cameron/" },
   {
     label: "Coaching",
     href: "https://tajcicameron.typeform.com/to/OD2UUu?typeform-source=tatianacameron.com",
@@ -68,8 +68,8 @@ export default function MicrositeHome() {
           <a
             key={label}
             href={href}
-            target={href === "#" ? undefined : "_blank"}
-            rel={href === "#" ? undefined : "noopener noreferrer"}
+            target="_blank"
+            rel="noopener noreferrer"
             className={`${merriweatherSans.className} text-2xl font-extrabold uppercase leading-[1.1] tracking-tight text-white transition-opacity hover:opacity-70 sm:text-4xl md:text-5xl`}
           >
             {label}
