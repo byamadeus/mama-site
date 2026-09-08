@@ -31,12 +31,12 @@ const SOCIAL_LINKS = [
   },
   {
     label: "YouTube",
-    href: "#",
+    href: "https://www.youtube.com/c/TajciCameron-TYchi",
     Icon: SiYoutube,
   },
   {
     label: "Email",
-    href: "#",
+    href: "mailto:Team.Tajci@TatianaCameron.com",
     Icon: Mail,
   },
 ] as const;
@@ -50,8 +50,8 @@ export default function MicrositeFooter() {
             <a
               key={label}
               href={href}
-              target={href === "#" ? undefined : "_blank"}
-              rel={href === "#" ? undefined : "noopener noreferrer"}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
               aria-label={label}
               className="text-white/70 transition-colors hover:text-white"
             >
