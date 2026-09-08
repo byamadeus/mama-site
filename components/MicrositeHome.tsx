@@ -9,9 +9,18 @@ const merriweatherSans = Merriweather_Sans({
 });
 
 const BACKGROUNDS = [
-  "/photos/photo-1.jpg",
-  "/photos/photo-2.jpg",
-  "/photos/photo-3.jpg",
+  {
+    src: "/photos/photo-1.jpg",
+    alt: "Tajči performing live on stage with a full orchestra",
+  },
+  {
+    src: "/photos/photo-2.jpg",
+    alt: "Tajči singing in a green sequined gown, close up on stage",
+  },
+  {
+    src: "/photos/photo-3.jpg",
+    alt: "Tajči performing in a black gown with an orchestra behind her",
+  },
 ];
 
 const NAV_LINKS = [
@@ -33,7 +42,9 @@ function pickRandom<T>(items: readonly T[]): T {
 }
 
 export default function MicrositeHome() {
-  const [background, setBackground] = useState<string | null>(null);
+  const [background, setBackground] = useState<
+    (typeof BACKGROUNDS)[number] | null
+  >(null);
 
   useEffect(() => {
     // Picked client-side, after mount, so every real page load gets a
@@ -47,8 +58,8 @@ export default function MicrositeHome() {
       {background && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={background}
-          alt=""
+          src={background.src}
+          alt={background.alt}
           className="absolute inset-0 h-full w-full object-cover opacity-90 transition-opacity duration-700"
         />
       )}
@@ -57,7 +68,7 @@ export default function MicrositeHome() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/logo.svg"
-        alt="Tajci"
+        alt="Tajči"
         className={`absolute bottom-6 left-6 z-10 w-32 transition-opacity duration-500 sm:bottom-10 sm:left-10 sm:w-48 md:w-56 ${
           background ? "opacity-100" : "opacity-0"
         }`}
