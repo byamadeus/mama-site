@@ -1,21 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Merriweather_Sans } from "next/font/google";
+
+const merriweatherSans = Merriweather_Sans({
+  subsets: ["latin"],
+  weight: ["800"],
+});
 
 const BACKGROUNDS = [
   "/photos/photo-1.jpg",
   "/photos/photo-2.jpg",
   "/photos/photo-3.jpg",
 ];
-
-const LOGO_PLACEMENTS = [
-  { align: "items-start justify-start", rotate: false },
-  { align: "items-center justify-start", rotate: false },
-  { align: "items-end justify-start", rotate: false },
-  { align: "items-end justify-start", rotate: true },
-  { align: "items-start justify-start", rotate: true },
-  { align: "items-center justify-center", rotate: false },
-] as const;
 
 const NAV_LINKS = [
   { label: "Shows", href: "https://www.instagram.com/tajcicameron/?hl=en" },
@@ -37,16 +34,12 @@ function pickRandom<T>(items: readonly T[]): T {
 
 export default function MicrositeHome() {
   const [background, setBackground] = useState<string | null>(null);
-  const [placement, setPlacement] = useState<
-    (typeof LOGO_PLACEMENTS)[number] | null
-  >(null);
 
   useEffect(() => {
     // Picked client-side, after mount, so every real page load gets a
     // fresh random choice instead of one baked into the static HTML.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setBackground(pickRandom(BACKGROUNDS));
-    setPlacement(pickRandom(LOGO_PLACEMENTS));
   }, []);
 
   return (
@@ -61,34 +54,28 @@ export default function MicrositeHome() {
       )}
       <div className="absolute inset-0 bg-black/35" />
 
-      <div className="relative z-10 flex flex-col sm:grid sm:min-h-screen sm:grid-cols-2">
-        <div
-          className={`flex min-h-[38vh] p-8 sm:min-h-0 sm:p-12 ${placement?.align ?? "items-center justify-center"}`}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/logo.svg"
-            alt="Tajci"
-            className={`w-44 transition-opacity duration-500 sm:w-56 ${
-              background ? "opacity-100" : "opacity-0"
-            } ${placement?.rotate ? "-rotate-90" : ""}`}
-          />
-        </div>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/logo.svg"
+        alt="Tajci"
+        className={`absolute bottom-6 left-6 z-10 w-32 transition-opacity duration-500 sm:bottom-10 sm:left-10 sm:w-48 md:w-56 ${
+          background ? "opacity-100" : "opacity-0"
+        }`}
+      />
 
-        <nav className="flex flex-col justify-center gap-1 p-8 sm:gap-2 sm:p-12">
-          {NAV_LINKS.map(({ label, href }) => (
-            <a
-              key={label}
-              href={href}
-              target={href === "#" ? undefined : "_blank"}
-              rel={href === "#" ? undefined : "noopener noreferrer"}
-              className="text-[clamp(2.75rem,16vw,5rem)] font-bold uppercase leading-[1.05] tracking-tight text-white transition-opacity hover:opacity-70 sm:text-6xl"
-            >
-              {label}
-            </a>
-          ))}
-        </nav>
-      </div>
+      <nav className="absolute bottom-6 right-6 z-10 flex flex-col items-end gap-0.5 text-right sm:bottom-10 sm:right-10 sm:gap-1">
+        {NAV_LINKS.map(({ label, href }) => (
+          <a
+            key={label}
+            href={href}
+            target={href === "#" ? undefined : "_blank"}
+            rel={href === "#" ? undefined : "noopener noreferrer"}
+            className={`${merriweatherSans.className} text-2xl font-extrabold uppercase leading-[1.1] tracking-tight text-white transition-opacity hover:opacity-70 sm:text-4xl md:text-5xl`}
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
     </div>
   );
 }
