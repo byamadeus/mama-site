@@ -1,5 +1,11 @@
 import MicrositeHome from "@/components/MicrositeHome";
+import MicrositeFooter from "@/components/MicrositeFooter";
 
 export default function Home() {
-  return <MicrositeHome />;
+  return (
+    <div className="bg-black">
+      <MicrositeHome />
+      <MicrositeFooter />
+    </div>
+  );
 }
