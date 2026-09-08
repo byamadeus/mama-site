@@ -1,0 +1,7 @@
+{
+  "adminRoute": "editor",
+  "locales": ["en"],
+  "defaultLocale": "en",
+  "routing": "prefix-except-default",
+  "onboarded": false
+}

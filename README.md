@@ -1,64 +1,85 @@
-# Tajci — landing site
+# Tajči — microsite
 
-Next.js (App Router) + Tailwind CSS, styled after Vercel's Geist design
-system (Geist Sans/Mono, flat neutral surfaces, no gradients, small-radius
-cards, `lucide-react` icons). Mobile-first, interaction-driven — built to
-work as a link-in-bio destination as well as a standalone site.
+Next.js (App Router) + Tailwind CSS. The live site is a single-page
+microsite: a full-bleed random concert photo, the wordmark pinned
+bottom-left, a Shows/Music/Speaking/Coaching/Books nav pinned bottom-right,
+and a small footer with socials + a newsletter CTA.
 
-Read `CONTEXT.md` first — it has background research on Tajci (real name,
+Read `CONTEXT.md` first — it has background research on Tajči (real name,
 career, existing web presence, sensitive items to confirm with the family
 before publishing) gathered from public sources.
 
-## Structure
+## What's actually live
 
-Each of Tajci's areas is a real route, not just a page section, so each
-can be linked to independently (e.g. for a speaking bureau or a booker):
+- `app/page.tsx` — renders `MicrositeHome` (the hero/nav) and
+  `MicrositeFooter` (socials + newsletter CTA)
+- `components/MicrositeHome.tsx` — picks one of `public/photos/*.jpg` at
+  random on every real page load (client-side, after mount, so it isn't
+  baked into the static HTML), logo bottom-left, nav bottom-right in
+  Merriweather Sans
+- `components/MicrositeFooter.tsx` — Instagram/Facebook/LinkedIn/Patreon/
+  YouTube/email icons (`react-icons`, since `lucide-react` deliberately
+  ships no brand logos) plus a Bebas Neue newsletter CTA
+- `public/logo.svg`, `public/photos/photo-{1,2,3}.jpg` — the real assets
+  in use
 
-- `/` — hub: no top nav, just the hero and four full-width stacked cards
-  (one per area) that feel like the images, not a menu bar
-- `/music`
-- `/speaking`
-- `/coaching`
-- `/about`
+That's the entire visible site right now — no other routes are linked
+from anywhere. Keep it that way: if a page or component isn't reachable
+from `/`, it shouldn't be sitting in the repo.
 
-There's no persistent tab bar. The home page has no header at all — the
-stacked cards *are* the navigation. Every sub-page instead gets a small
-breadcrumb ("← Tajci / Music") that links back home; `SiteHeader` decides
-which to render based on the current route.
+## Content layer: typren
 
-Pages are thin — they just compose section components, so a layout or
-copy change happens in one file instead of five. `lib/sections.ts` is the
-single source of truth for the four areas (href/label/tone/copy); both
-`SiteHeader` (for the breadcrumb's current-page label) and `ExploreGrid`
-read from it instead of keeping their own copies.
+This project is set up to use [typren](https://github.com/typren/typren)
+for any *new* pages going forward, per an active beta test. It's a
+markdown-based content layer — pages are `content/*.md` files with
+frontmatter, rendered as an ordered list of "slices" (typed React
+components registered in `slices/registry.ts`).
 
-`components/ui/` holds true atoms (no page/business logic):
+**Current state (typren v0.2.2):** the CLI (`typren`) and core engine
+(`@typren/core`) are published and wired in — `cms.config.ts` and
+`cms-actions.ts` both work today. `@typren/editor`, the actual visual
+editor UI, is **not published to npm yet** — so there's no browser-based
+editing experience yet. Until it ships, "editing content" means editing
+the markdown files directly (or asking Claude to).
 
-- `Eyebrow` — the small uppercase mono label ("LISTEN", "CURRENTLY", etc.)
-- `Button` — the arrow-suffixed link button (`solid`/`outline` variants,
-  `sm`/`md` sizes)
+- `typren.config.json` — adminRoute/locales/defaultLocale bootstrap
+- `cms.config.ts` — wires the markdown adapter (reads `content/`), local
+  auth (dev-only gate, fails closed in production), and a media adapter
+  (`public/img/`)
+- `cms-actions.ts` — `saveDraft`/`publish`/`createPage`/`deletePage`/media
+  Server Actions. No UI drives these yet; they're the write surface for
+  scripts, a future admin tool, or agent-driven edits
+- `slices/` — `registry.ts` (slice name → component), `defaults.ts`
+  (starter props), `field-schema.ts` (editor field hints, inert until
+  `@typren/editor` exists), plus the actual slice components
+  (`hero.tsx`, `prose.tsx` are the CLI's generic starters — replace them
+  with real ones as pages get built)
+- `content/home.md`, `content/site.md` — example content from the
+  scaffold. Nothing renders these yet; the live homepage is the bespoke
+  `MicrositeHome` component, not a typren page — that's intentional,
+  it's custom art direction, not a good fit for generic slices
 
-`components/` holds layout primitives and page sections built from those
-atoms:
+**Building a new page with it:**
 
-- `Section` — centers content at a given max-width with standard padding
-- `Band` — full-width bordered/surface strip (the "Currently" block and
-  every CTA band)
-- `CardList` — the bordered list used for Themes/What's included
-- `ExploreGrid` — the full-width stacked cards on the home page, one
-  large near-full-height photo per area
-- `SiteHeader` — hidden on `/`, a small back breadcrumb everywhere else
-- `SiteFooter` — persistent chrome on every page
-- `PageHero` — text + photo-card hero used by each sub-page
-- `WhyCard` — click-to-expand card that opens a drawer (bottom sheet on
-  mobile, centered modal on desktop) with the fuller "why" for that page
-- `PhotoPlaceholder` — flat neutral placeholder standing in for real
-  photography, no gradients (see "Replacing placeholders" below)
-- `EmbedPlaceholder` — stand-in for Spotify/Apple Music/YouTube embeds
+```tsx
+import { cmsStore } from "@/cms.config";
+import { SliceZone } from "@/slices/slice-zone";
 
-Adding a fifth area (say `/press`) means one entry in `lib/sections.ts`
-plus a new `app/press/page.tsx` built from `PageHero`/`Section`/`Band` —
-the nav and home grid pick it up automatically.
+export default function AboutPage() {
+  const page = cmsStore.getPublished("about"); // content/about.md
+  return <SliceZone slices={page.slices} />;
+}
+```
+
+Add a `content/about.md` with frontmatter slices, register any new slice
+components in `slices/registry.ts`, and it renders. Keep building slices
+that match the site's actual design system rather than the generic
+starters.
+
+`npx typren apply-settings` reconciles `next.config.ts` with
+`typren.config.json` once `@typren/editor` is actually installed and
+there's a real `/editor` route to rewrite to — no need to run it before
+then.
 
 ## Getting started
 
@@ -69,26 +90,7 @@ npm run dev
 
 Open http://localhost:3000.
 
-## Replacing placeholders
-
-Everything visual is a placeholder until real assets are provided:
-
-- **Photos** — swap `<PhotoPlaceholder ... />` for a real `next/image`
-  (drop files in `public/` and reference them).
-- **Music** — replace the `EmbedPlaceholder` in `app/music/page.tsx` with
-  a real Spotify/Apple Music embed `<iframe>`.
-- **Video** — replace the `EmbedPlaceholder`s in `app/music/page.tsx` and
-  `app/speaking/page.tsx` with YouTube embeds.
-- **Booking / coaching links** — the `mailto:` links in `app/music`,
-  `app/speaking`, and `app/coaching` should be swapped for real contact
-  or booking-form links.
-- **Books** — `app/about/page.tsx` has a placeholder cover + link.
-- **Newsletter / social** — `components/SiteFooter.tsx` has placeholder
-  `href="#"` links for Instagram, Spotify, YouTube, Patreon, and the
-  newsletter signup.
-
 ## Deploying
 
-This is a stock Next.js app, so it deploys to Vercel with no extra config:
-push this repo to GitHub, then import it at https://vercel.com/new. Every
-push to this branch gets its own preview URL for checking on mobile.
+Stock Next.js app on Vercel, connected to this repo's `main` branch —
+every merge to `main` deploys to production automatically.

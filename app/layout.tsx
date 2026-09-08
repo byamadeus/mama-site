@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
-import SiteHeader from "@/components/SiteHeader";
-import SiteFooter from "@/components/SiteFooter";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Tajci — Singer, Speaker, Coach",
-    template: "%s — Tajci",
+    default: "Tajči",
+    template: "%s — Tajči",
   },
   description:
-    "Tajci is a storyteller whose language is music — a pop and jazz singer, speaker, and coach creating experiences that move people out of the ordinary.",
+    "Tajči — storyteller whose language is music. Shows, music, speaking, coaching, and books.",
 };
 
 export default function RootLayout({
@@ -20,12 +16,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body className="flex min-h-full flex-col antialiased">
-        <SiteHeader />
-        <main className="flex-1">{children}</main>
-        <SiteFooter />
-      </body>
+    <html lang="en">
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
