@@ -33,7 +33,7 @@ const NAV_LINKS = [
   },
   {
     label: "Books",
-    href: "https://www.amazon.com/Books-Tatiana-Tajci-Cameron/s?rh=n:283155,p_27:Tatiana+%2527Tajci%2527+Cameron",
+    href: "https://www.amazon.com/s?k=Tatiana+%22Tajci%22+Cameron&i=audible&ref=dp_byline_sr_audible_1",
   },
 ] as const;
 
