@@ -60,14 +60,23 @@ export default function MicrositeFooter() {
           ))}
         </div>
 
-        <a
-          href="https://tatianacameron.kartra.com/page/Newsletter"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${bebasNeue.className} rounded-full border border-white/30 px-6 py-2 text-lg tracking-wide text-white transition-colors hover:border-white hover:bg-white hover:text-black`}
-        >
-          Join the Newsletter
-        </a>
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <a
+            href="mailto:team.tajci@tatianacameron.com"
+            className={`${bebasNeue.className} rounded-full border border-white/30 px-6 py-2 text-lg tracking-wide text-white transition-colors hover:border-white hover:bg-white hover:text-black`}
+          >
+            Contact Us
+          </a>
+
+          <a
+            href="https://tatianacameron.kartra.com/page/Newsletter"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${bebasNeue.className} rounded-full border border-white/30 px-6 py-2 text-lg tracking-wide text-white transition-colors hover:border-white hover:bg-white hover:text-black`}
+          >
+            Join the Newsletter
+          </a>
+        </div>
       </div>
 
       <p
