@@ -12,16 +12,25 @@ before publishing) gathered from public sources.
 ## What's actually live
 
 - `app/page.tsx` — renders `MicrositeHome` (the hero/nav) and
-  `MicrositeFooter` (socials + newsletter CTA)
+  `MicrositeFooter` (socials + Contact Us + newsletter CTA)
 - `components/MicrositeHome.tsx` — picks one of `public/photos/*.jpg` at
   random on every real page load (client-side, after mount, so it isn't
-  baked into the static HTML), logo bottom-left, nav bottom-right in
-  Merriweather Sans
-- `components/MicrositeFooter.tsx` — Instagram/Facebook/LinkedIn/Patreon/
-  YouTube/email icons (`react-icons`, since `lucide-react` deliberately
-  ships no brand logos) plus a Bebas Neue newsletter CTA
+  baked into the static HTML); composes `ui/Logo` (bottom-left) and
+  `PrimaryNav` (bottom-right)
+- `components/MicrositeFooter.tsx` — composes `SocialLinks` and two
+  `ui/PillButton`s (Contact Us, Join the Newsletter)
 - `public/logo.svg`, `public/photos/photo-{1,2,3}.jpg` — the real assets
   in use
+
+Components follow an atomic structure — see `AGENTS.md`'s "Atomic design
+structure" section for the full explanation, and `AGENTS.md` generally
+for the style guide, icon sourcing, and commit/push conventions every
+agent working here (Claude, Codex, or otherwise) should follow. Briefly:
+`components/ui/` holds atoms (`Logo`, `PillButton`, `SocialIcon`,
+`NavLink`), `SocialLinks`/`PrimaryNav` are molecules, `MicrositeHome`/
+`MicrositeFooter` are organisms, and `lib/links.ts`/`lib/fonts.ts` are
+the single source of truth for external URLs and font instances —
+extend those rather than inlining a new one.
 
 That's the entire visible site right now — no other routes are linked
 from anywhere. Keep it that way: if a page or component isn't reachable
