@@ -1,12 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Merriweather_Sans } from "next/font/google";
-
-const merriweatherSans = Merriweather_Sans({
-  subsets: ["latin"],
-  weight: ["800"],
-});
+import Logo from "./ui/Logo";
+import PrimaryNav from "./PrimaryNav";
 
 const BACKGROUNDS = [
   {
@@ -22,20 +18,6 @@ const BACKGROUNDS = [
     alt: "Tajči performing in a black gown with an orchestra behind her",
   },
 ];
-
-const NAV_LINKS = [
-  { label: "Shows", href: "https://www.instagram.com/tajcicameron/?hl=en" },
-  { label: "Music", href: "https://open.spotify.com/artist/0ugmPqO8dNY1CLfjYwUwZK" },
-  { label: "Speaking", href: "https://www.linkedin.com/in/tatiana-cameron/" },
-  {
-    label: "Coaching",
-    href: "https://tajcicameron.typeform.com/to/OD2UUu?typeform-source=tatianacameron.com",
-  },
-  {
-    label: "Books",
-    href: "https://www.amazon.com/s?k=Tatiana+%22Tajci%22+Cameron&i=audible&ref=dp_byline_sr_audible_1",
-  },
-] as const;
 
 function pickRandom<T>(items: readonly T[]): T {
   return items[Math.floor(Math.random() * items.length)];
@@ -65,28 +47,13 @@ export default function MicrositeHome() {
       )}
       <div className="absolute inset-0 bg-black/35" />
 
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/logo.svg"
-        alt="Tajči"
+      <Logo
         className={`absolute bottom-6 left-6 z-10 w-32 transition-opacity duration-500 sm:bottom-10 sm:left-10 sm:w-48 md:w-56 ${
           background ? "opacity-100" : "opacity-0"
         }`}
       />
 
-      <nav className="absolute bottom-6 right-6 z-10 flex flex-col items-end gap-0.5 text-right sm:bottom-10 sm:right-10 sm:gap-1">
-        {NAV_LINKS.map(({ label, href }) => (
-          <a
-            key={label}
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`${merriweatherSans.className} text-2xl font-extrabold uppercase leading-[1.1] tracking-tight text-white transition-opacity hover:opacity-70 sm:text-4xl md:text-5xl`}
-          >
-            {label}
-          </a>
-        ))}
-      </nav>
+      <PrimaryNav />
     </div>
   );
 }
