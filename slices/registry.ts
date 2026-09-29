@@ -1,4 +1,5 @@
 import type { ComponentType } from "react";
+import { Coaching } from "./coaching";
 import { Hero } from "./hero";
 import { Prose } from "./prose";
 
@@ -6,6 +7,7 @@ import { Prose } from "./prose";
  *  slices here, plus a starter entry in defaults.ts. */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const registry: Record<string, ComponentType<any>> = {
+  coaching: Coaching,
   hero: Hero,
   prose: Prose,
 };
