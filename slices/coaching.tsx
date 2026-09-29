@@ -56,12 +56,11 @@ export function Coaching({
         </div>
 
         <div className="relative overflow-hidden">
-          {/* Use the supplied coaching/panel photo here once it is added to public/photos/coaching.jpg. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/photos/photo-2.jpg"
+            src="/photos/photo-4.jpg"
             alt="Tajči speaking on stage"
-            className="aspect-[4/5] w-full object-cover grayscale"
+            className="aspect-[4/5] w-full object-cover"
           />
           <div className="absolute inset-0 bg-black/20" />
         </div>
