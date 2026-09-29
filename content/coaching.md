@@ -19,10 +19,15 @@ slices:
         note: Available for conferences, professional associations, organizations, retreats and teams.
         cta: Inquire About Speaking
       - heading: Coaching & Facilitation
-        body: I work with professionals, creatives and leaders navigating growth, transition and the question of what comes next.\n\nAs a Professional Certified Coach (PCC) and National Board Certified Health & Wellness Coach (NBC-HWC), I help clients create careers and lives that are ambitious, meaningful and sustainable.\n\nI also facilitate team conversations, retreats, panels and workshops — helping people move beyond presentations and meetings into meaningful dialogue, clarity and action.
+        body: |-
+          I work with professionals, creatives and leaders navigating growth, transition and the question of what comes next.
+
+          As a Professional Certified Coach (PCC) and National Board Certified Health & Wellness Coach (NBC-HWC), I help clients create careers and lives that are ambitious, meaningful and sustainable.
+
+          I also facilitate team conversations, retreats, panels and workshops — helping people move beyond presentations and meetings into meaningful dialogue, clarity and action.
         cta: Coaching & Facilitation Inquiry
       - heading: Workshops, Panels, and Programming
-        body: I work especially well with nonprofits, professional associations and purpose-driven organizations on projects involving:
+        body: "I work especially well with nonprofits, professional associations and purpose-driven organizations on projects involving:"
         bullets:
           - Training & curriculum development
           - Mentor and volunteer programs
