@@ -5,7 +5,7 @@ const NAV_LINKS = [
   { label: "Shows", href: LINKS.instagram },
   { label: "Music", href: LINKS.spotify },
   { label: "Speaking", href: LINKS.linkedin },
-  { label: "Coaching", href: LINKS.coachingIntake },
+  { label: "Coaching", href: "/coaching" },
   { label: "Books", href: LINKS.booksAmazon },
 ] as const;
 
