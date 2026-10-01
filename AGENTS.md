@@ -13,6 +13,66 @@ typren content layer for future pages) and `CONTEXT.md` for background on
 Tajči herself, including a few sensitive items that need family sign-off
 before they go on the site.
 
+## Operator checklist — mandatory, in order
+
+This section is deliberately strict. It exists because a previous session
+broke the production build by pushing content that was never built
+locally first. If you are an AI agent making changes here, follow these
+steps in order, every time, no exceptions.
+
+1. **Read before you write.** Before touching any file, read this whole
+   file (`AGENTS.md`), `README.md`, and `CONTEXT.md` start to finish — not
+   a skim, not a grep for one section. If you're about to write Next.js
+   code and haven't yet, also read the relevant guide under
+   `node_modules/next/dist/docs/` per the notice at the top of this file.
+   If you can't summarize in one or two sentences what the style guide,
+   the atomic component structure, and the current architecture are, you
+   are not ready to write code yet — go back and read.
+2. **Match the existing style exactly, don't invent a new one.** Follow
+   "Style guide," "Atomic design structure," and "Icons" below to the
+   letter: monochrome only, the two fonts from `lib/fonts.ts` and nothing
+   else, every external URL added to `lib/links.ts` rather than inlined,
+   new UI built from `components/ui/` atoms (extend them, don't duplicate
+   their Tailwind classes or add a competing one-off component). If a
+   choice isn't covered by the docs, look at how the existing homepage
+   components solved a similar problem and match that, rather than
+   picking your own approach.
+3. **Never decide content on your own — ask.** Anything that states a
+   fact about Tajči, her family, her history, or makes a judgment call
+   about what to publish (wording of a bio, which credential to lead
+   with, whether to mention something from `CONTEXT.md`'s "sensitive
+   items" or "open questions for the family" list, which link a CTA
+   should point to, which photo represents her work) is a content
+   decision, not a coding decision. Stop and ask the human you're working
+   with a specific, answerable question before writing it. Don't guess,
+   don't paraphrase around a gap, and don't leave a placeholder that
+   quietly implies an answer — ask.
+4. **Prove it builds before you commit or push.** Run `npm run lint` and
+   `npm run build` locally and confirm both finish with zero errors —
+   every time, before every commit that touches code or content
+   (`content/*.md` frontmatter is real YAML and breaks the build just
+   like broken TypeScript does). Do not commit "to see what happens" and
+   do not push a red build hoping it'll pass in CI — there is no CI gate
+   here, a broken `main` build is a broken production site for the whole
+   family. If lint or build fails and you don't immediately understand
+   why, that's a stop condition — see step 5, don't push past it.
+5. **When you hit a technical wall, stop — don't work around it.** If
+   something doesn't build, doesn't deploy, or behaves in a way you can't
+   explain after reading this file, `README.md`, and the relevant
+   `node_modules/next/dist/docs/` guide: do not disable checks, do not
+   use `--no-verify`, do not force-push, do not delete or rewrite the
+   content causing the problem just to make the error go away, and do not
+   keep guessing at fixes one after another. Stop, leave your work
+   committed on your branch, write down exactly what you tried and the
+   exact error, and ask one of the engineers on this project (Evan /
+   `byamadeus`, or Claude) for help. Getting a build green by hiding the
+   error is worse than leaving it red and asking.
+6. **Commit freely; pushing and merging need a human.** Local commits on
+   your own branch are cheap — make them as you go. But per "Before you
+   commit or push" below: never push directly to `main`, and always stop
+   and ask the human first before pushing to the remote, opening a PR, or
+   merging, even for a change that feels small or obviously correct.
+
 ## Before you commit or push
 
 - Get the change building and lint-clean first (`npm run lint`,
