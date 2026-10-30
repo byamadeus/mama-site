@@ -1,11 +1,11 @@
-import MicrositeHome from "@/components/MicrositeHome";
-import MicrositeFooter from "@/components/MicrositeFooter";
+import { getPage } from "@/cms.config";
+import { SliceZone } from "@/slices/slice-zone";
 
-export default function Home() {
+export default async function Home() {
+  const page = await getPage("home");
   return (
     <div className="bg-black">
-      <MicrositeHome />
-      <MicrositeFooter />
+      <SliceZone slices={page.slices} />
     </div>
   );
 }

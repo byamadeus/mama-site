@@ -1,0 +1,73 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Logo from "@/components/ui/Logo";
+import NavLink from "@/components/ui/NavLink";
+import { LINKS } from "@/lib/links";
+
+type Background = { src: string; alt: string };
+type NavItem = { label: string; link: string };
+
+type Props = Readonly<{
+  backgrounds: Background[];
+  nav: NavItem[];
+}>;
+
+function pickRandom<T>(items: readonly T[]): T {
+  return items[Math.floor(Math.random() * items.length)];
+}
+
+/** Resolves a nav item's `link` to an href: an internal path (starts with
+ *  "/") is used as-is, otherwise it's a lib/links.ts key — kept there, not
+ *  in content, so every external URL still has exactly one source of
+ *  truth (see lib/links.ts). */
+function navHref(link: string): string {
+  if (link.startsWith("/")) return link;
+  const href = LINKS[link as keyof typeof LINKS];
+  if (!href && process.env.NODE_ENV !== "production") {
+    console.warn(`[microsite-hero] unknown nav link "${link}" — add it to lib/links.ts`);
+  }
+  return href ?? "#";
+}
+
+/** The random-photo hero + corner-pinned logo/nav from the live microsite,
+ *  as a typren slice: content picks the photo pool and nav items, the
+ *  design stays code. */
+export function MicrositeHero({ backgrounds, nav }: Props) {
+  const [background, setBackground] = useState<Background | null>(null);
+
+  useEffect(() => {
+    // Picked client-side, after mount, so every real page load gets a
+    // fresh random choice instead of one baked into the static HTML.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setBackground(pickRandom(backgrounds));
+  }, [backgrounds]);
+
+  return (
+    <div className="relative min-h-screen w-full overflow-hidden bg-black">
+      {background && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={background.src}
+          alt={background.alt}
+          className="absolute inset-0 h-full w-full object-cover opacity-90 transition-opacity duration-700"
+        />
+      )}
+      <div className="absolute inset-0 bg-black/35" />
+
+      <Logo
+        className={`absolute bottom-6 left-6 z-10 w-32 transition-opacity duration-500 sm:bottom-10 sm:left-10 sm:w-48 md:w-56 ${
+          background ? "opacity-100" : "opacity-0"
+        }`}
+      />
+
+      <nav className="absolute bottom-6 right-6 z-10 flex flex-col items-end gap-0.5 text-right sm:bottom-10 sm:right-10 sm:gap-1">
+        {nav.map(({ label, link }) => (
+          <NavLink key={label} href={navHref(link)}>
+            {label}
+          </NavLink>
+        ))}
+      </nav>
+    </div>
+  );
+}
