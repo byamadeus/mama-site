@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Logo from "@/components/ui/Logo";
 import PillButton from "@/components/ui/PillButton";
 import { merriweatherSans } from "@/lib/fonts";
@@ -31,15 +32,15 @@ export function Coaching({
   return (
     <main className="min-h-screen bg-black text-white">
       <header className="flex items-center justify-between px-6 py-6 sm:px-10">
-        <a href="/" aria-label="Tajči home">
+        <Link href="/" aria-label="Tajči home">
           <Logo className="w-28 sm:w-36" />
-        </a>
-        <a
+        </Link>
+        <Link
           href="/"
           className="text-sm uppercase tracking-[0.18em] text-white/65 transition-colors hover:text-white"
         >
           Home
-        </a>
+        </Link>
       </header>
 
       <section className="mx-auto grid max-w-7xl gap-10 px-6 pb-20 pt-10 sm:px-10 md:grid-cols-[1.05fr_0.95fr] md:items-center md:gap-14 md:pb-28 md:pt-16">
